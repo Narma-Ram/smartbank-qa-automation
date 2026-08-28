@@ -1,0 +1,14 @@
+{
+  "valid_user": {
+    "username": "smartbank_user",
+    "password": "ValidPassword123"
+  },
+  "invalid_user": {
+    "username": "invalid_user",
+    "password": "WrongPassword123"
+  },
+  "inactive_user": {
+    "username": "inactive_user",
+    "password": "InactivePassword123"
+  }
+}
