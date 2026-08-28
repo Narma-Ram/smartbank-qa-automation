@@ -29,7 +29,7 @@ def test_successful_login_creates_audit_record():
 
     # Step 1: Perform a fresh login through the UI
     with sync_playwright() as p:
-        browser = p.chromium.launch(headless=False)
+        browser = p.chromium.launch(headless=True)
         page = browser.new_page()
 
         login_page = LoginPage(page)
