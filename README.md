@@ -109,3 +109,116 @@ smartbank-qa-automation/
 ├── conftest.py
 ├── requirements.txt
 └── README.md
+
+## Running the Project
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/Narma-Ram/smartbank-qa-automation.git
+cd smartbank-qa-automation
+```
+
+### 2. Create and activate a virtual environment
+
+```bash
+python -m venv .venv
+```
+
+Windows:
+
+```bash
+.venv\Scripts\activate
+```
+
+### 3. Install dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Install Playwright
+
+```bash
+python -m playwright install chromium
+```
+
+### 5. Start the SmartBank application
+
+```bash
+python app/app.py
+```
+
+### 6. Run the automated tests
+
+Open another terminal and run:
+
+```bash
+python -m pytest tests -v
+```
+
+## Generate an HTML Test Report
+
+```bash
+python -m pytest tests -v --html=reports/report.html --self-contained-html
+```
+
+The HTML report includes:
+
+- Test execution summary
+- Pass and fail results
+- Project metadata
+- Environment information
+- Failure details
+- Screenshots for failed UI tests
+
+## Continuous Integration
+
+The project uses GitHub Actions to automatically:
+
+1. Check out the source code
+2. Set up Python
+3. Install project dependencies
+4. Install the Playwright Chromium browser
+5. Start the SmartBank application
+6. Run the automated test suite
+7. Generate an HTML test report
+8. Upload the test report as a GitHub Actions artifact
+9. Upload failure screenshots when a test failure occurs
+
+The workflow runs automatically on:
+
+- Pushes to the `main` branch
+- Pull requests targeting the `main` branch
+
+## CI/CD Workflow
+
+```text
+Code Push
+    ↓
+GitHub Actions
+    ↓
+Install Dependencies
+    ↓
+Install Playwright
+    ↓
+Start SmartBank Application
+    ↓
+Run UI + API + Database Tests
+    ↓
+Generate HTML Report
+    ↓
+Capture Failure Screenshots
+    ↓
+Upload Test Artifacts
+```
+
+## Author
+
+**Narma Ram**
+
+QA Automation Engineer | Software Quality Assurance
+
+---
+
+This project demonstrates hands-on experience with automated UI testing, API testing, database validation, test reporting, and CI/CD using modern QA automation tools.
