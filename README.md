@@ -110,13 +110,20 @@ smartbank-qa-automation/
 ├── requirements.txt
 └── README.md
 
-## Running the Project
+</>Markdown
+###  Running the Project
 
 ### 1. Clone the repository
 
 ```bash
 git clone https://github.com/Narma-Ram/smartbank-qa-automation.git
 cd smartbank-qa-automation
+```
+
+### 2. Create and activate a virtual environment
+
+```bash
+python -m venv .venv
 ```
 
 ### 2. Create and activate a virtual environment
@@ -222,3 +229,6 @@ QA Automation Engineer | Software Quality Assurance
 ---
 
 This project demonstrates hands-on experience with automated UI testing, API testing, database validation, test reporting, and CI/CD using modern QA automation tools.
+
+
+
