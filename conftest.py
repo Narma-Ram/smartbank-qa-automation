@@ -1,3 +1,4 @@
+import base64
 import platform
 from pathlib import Path
 
@@ -36,6 +37,25 @@ def pytest_runtest_makereport(item, call):
                 path=str(screenshot_path),
                 full_page=True
             )
+
+            screenshot_base64 = base64.b64encode(
+                screenshot_path.read_bytes()
+            ).decode("utf-8")
+
+            pytest_html = item.config.pluginmanager.getplugin("html")
+
+            if pytest_html:
+                extra = getattr(report, "extras", [])
+
+                extra.append(
+                    pytest_html.extras.image(
+                        screenshot_base64,
+                        mime_type="image/png",
+                        extension="png"
+                    )
+                )
+
+                report.extras = extra
             
 @pytest.fixture
 def page():

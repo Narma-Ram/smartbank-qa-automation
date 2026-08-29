@@ -60,6 +60,7 @@ def test_inactive_user_cannot_login(page):
 
     assert page.locator("#error").inner_text() == \
         "Invalid username or password"
+        
     # Verify inactive user did NOT reach MFA
     assert not page.locator("#mfa-message").is_visible()
 
