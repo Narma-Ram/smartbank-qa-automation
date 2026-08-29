@@ -1,5 +1,7 @@
 # SmartBank QA Automation
 
+![SmartBank QA Automation](https://github.com/Narma-Ram/smartbank-qa-automation/actions/workflows/ci.yml/badge.svg)
+
 End-to-end QA automation project demonstrating UI automation, API testing, database validation, test reporting, and CI/CD.
 
 ## Project Overview
