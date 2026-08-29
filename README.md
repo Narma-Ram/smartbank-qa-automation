@@ -233,4 +233,43 @@ QA Automation Engineer | Software Quality Assurance
 This project demonstrates hands-on experience with automated UI testing, API testing, database validation, test reporting, and CI/CD using modern QA automation tools.
 
 
+## 🎉 Sprint 1 – Completed
+
+✅ Requirements and acceptance criteria
+
+✅ QA test planning and test cases
+
+✅ UI automation with Playwright
+
+✅ API testing
+
+✅ Database validation
+
+✅ 16 automated tests
+
+✅ Page Object Model (POM)
+
+✅ JSON-based test data
+
+✅ Shared Pytest fixtures
+
+✅ HTML test reporting
+
+✅ Custom test report metadata
+
+✅ Automatic failure screenshots
+
+✅ Failure screenshots embedded in HTML reports
+
+✅ GitHub Actions CI pipeline
+
+✅ GitHub Actions test-report artifacts
+
+✅ Professional project README
+
+✅ GitHub Actions status badge
+
+✅ Clean Git working tree
+
+
 
