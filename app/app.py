@@ -140,6 +140,24 @@ def login():
     username = request.form.get("username")
     password = request.form.get("password")
 
+    # Validate missing or empty username
+    if not username:
+        log_login_attempt(username, False)
+
+        return render_template_string(
+            LOGIN_PAGE,
+            error="Username is required"
+        )
+
+    # Validate missing or empty password
+    if not password:
+        log_login_attempt(username, False)
+
+        return render_template_string(
+            LOGIN_PAGE,
+            error="Password is required"
+        )
+
     connection = get_connection()
     cursor = connection.cursor()
 

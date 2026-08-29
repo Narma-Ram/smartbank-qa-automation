@@ -81,3 +81,39 @@ def test_inactive_user_cannot_login():
         assert not page.locator("#mfa-message").is_visible()
 
         browser.close()
+
+
+def test_missing_username_shows_required_message():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page()
+
+        login_page = LoginPage(page)
+        login_page.open("http://127.0.0.1:5000")
+
+        page.fill("#password", "ValidPassword123")
+        page.click("#login")
+
+        assert page.locator("#error").is_visible()
+        assert page.locator("#error").inner_text() == \
+            "Username is required"
+
+        browser.close()
+
+
+def test_missing_password_shows_required_message():
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page()
+
+        login_page = LoginPage(page)
+        login_page.open("http://127.0.0.1:5000")
+
+        page.fill("#username", "smartbank_user")
+        page.click("#login")
+
+        assert page.locator("#error").is_visible()
+        assert page.locator("#error").inner_text() == \
+            "Password is required"
+
+        browser.close()
