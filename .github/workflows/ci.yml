@@ -33,6 +33,13 @@ jobs:
           python app/app.py &
           sleep 5
 
-      - name: Run tests
+      - name: Run tests and generate HTML report
         run: |
-          python -m pytest tests -v
+          mkdir -p reports
+          python -m pytest tests -v --html=reports/report.html --self-contained-html
+
+      - name: Upload HTML test report
+        uses: actions/upload-artifact@v4
+        with:
+          name: SmartBank-Test-Report
+          path: reports/report.html
