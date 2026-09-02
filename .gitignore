@@ -154,3 +154,6 @@ __pycache__/
 
 # reports
 reports/
+
+# Local SQLite database
+smartbank.db
