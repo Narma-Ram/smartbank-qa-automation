@@ -236,23 +236,41 @@ This project demonstrates hands-on experience with automated UI testing, API tes
 ## 🎉 Sprint 1 – Completed
 
 ✅ Requirements and acceptance criteria
+
 ✅ QA test planning and test cases
+
 ✅ UI automation with Playwright
+
 ✅ API testing
+
 ✅ Database validation
+
 ✅ 16 automated tests
+
 ✅ Page Object Model (POM)
+
 ✅ JSON-based test data
+
 ✅ Shared Pytest fixtures
+
 ✅ HTML test reporting
+
 ✅ Custom test report metadata
+
 ✅ Automatic failure screenshots
+
 ✅ Failure screenshots embedded in HTML reports
+
 ✅ GitHub Actions CI pipeline
+
 ✅ GitHub Actions test-report artifacts
+
 ✅ Professional project README
+
 ✅ GitHub Actions status badge
+
 ✅ Clean Git working tree
+
 
 ## 🎉 Sprint 2 – Completed
 
