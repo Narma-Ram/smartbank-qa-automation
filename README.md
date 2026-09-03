@@ -236,40 +236,59 @@ This project demonstrates hands-on experience with automated UI testing, API tes
 ## 🎉 Sprint 1 – Completed
 
 ✅ Requirements and acceptance criteria
-
 ✅ QA test planning and test cases
-
 ✅ UI automation with Playwright
-
 ✅ API testing
-
 ✅ Database validation
-
 ✅ 16 automated tests
-
 ✅ Page Object Model (POM)
-
 ✅ JSON-based test data
-
 ✅ Shared Pytest fixtures
-
 ✅ HTML test reporting
-
 ✅ Custom test report metadata
-
 ✅ Automatic failure screenshots
-
 ✅ Failure screenshots embedded in HTML reports
-
 ✅ GitHub Actions CI pipeline
-
 ✅ GitHub Actions test-report artifacts
-
 ✅ Professional project README
-
 ✅ GitHub Actions status badge
-
 ✅ Clean Git working tree
+
+## 🎉 Sprint 2 – Completed
+
+✅ Secure Multi-Factor Authentication (MFA) requirements and acceptance criteria  
+✅ MFA QA test planning and test cases  
+✅ MFA UI automation with Playwright  
+✅ MFA API endpoint implementation  
+✅ Postman API testing  
+✅ Valid MFA OTP validation  
+✅ Invalid MFA OTP validation  
+✅ MFA OTP expiration validation  
+✅ 3-attempt MFA lockout validation  
+✅ Correct OTP rejected after lockout  
+✅ MFA session resend / superseded OTP validation  
+✅ API + Database validation  
+✅ Automated MFA API tests  
+✅ 22 automated tests  
+✅ Shared Pytest fixtures  
+✅ Reusable database connection fixture  
+✅ HTML test reporting  
+✅ Custom test report metadata  
+✅ Automatic failure screenshots  
+✅ Failure screenshots embedded in HTML reports  
+✅ GitHub Actions CI pipeline  
+✅ GitHub Actions test-report artifacts  
+✅ GitHub Actions status badge  
+✅ GitHub repository documentation  
+✅ Clean Git working tree
+
+### Sprint 2 – Key Achievement
+
+Built and automated a secure MFA workflow with OTP generation, expiration,
+attempt tracking, 3-attempt lockout, session replacement, API validation,
+and database verification.
+
+**Regression result: 22 tests passed ✅**
 
 
 
