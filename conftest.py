@@ -1,7 +1,8 @@
 import base64
 import platform
 from pathlib import Path
-
+from app.app import create_mfa_session
+import sqlite3
 import pytest
 from pytest_metadata.plugin import metadata_key
 
@@ -66,3 +67,18 @@ def page():
         yield page
 
         browser.close()
+        
+@pytest.fixture        
+def mfa_session():
+    session_id, otp = create_mfa_session("smartbank_user")
+
+    return {
+        "session_id": session_id,
+        "otp": otp
+    }
+    
+@pytest.fixture
+def db_connection():
+    connection = sqlite3.connect("smartbank.db")
+    yield connection
+    connection.close()

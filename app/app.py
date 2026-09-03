@@ -230,21 +230,21 @@ def verify_mfa_code(mfa_session_id, otp):
     # Check OTP expiry
     if datetime.now() > datetime.fromisoformat(expiry_time):
         return "EXPIRED"
-
+    
     # Check OTP
     if otp != stored_otp:
         attempts += 1
 
         new_status = "LOCKED" if attempts >= 3 else "ACTIVE"
 
-    with get_db() as connection:
-        cursor = connection.cursor()
+        with get_db() as connection:
+            cursor = connection.cursor()
 
-        cursor.execute("""
-            UPDATE mfa_sessions
-            SET attempts = ?, status = ?
-            WHERE id = ?
-        """, (attempts, new_status, session_id))
+            cursor.execute("""
+                UPDATE mfa_sessions
+                SET attempts = ?, status = ?
+                WHERE id = ?
+            """, (attempts, new_status, session_id))
 
         return "LOCKED" if new_status == "LOCKED" else "INVALID"
 
@@ -439,6 +439,69 @@ def verify_mfa():
                 You have successfully completed Multi-Factor Authentication.
             </p>
         """
+        
+@app.route("/api/mfa/verify", methods=["POST"])
+def api_verify_mfa():
+    data = request.get_json() or {}
+
+    mfa_session_id = data.get("mfa_session_id")
+    otp = data.get("otp")
+
+    if not mfa_session_id:
+        return jsonify({
+            "status": "error",
+            "message": "MFA session ID is required"
+        }), 400
+
+    if not otp:
+        return jsonify({
+            "status": "error",
+            "message": "MFA code is required"
+        }), 400
+
+    result = verify_mfa_code(mfa_session_id, otp)
+
+    if result == "NOT_FOUND":
+        return jsonify({
+            "status": "error",
+            "message": "MFA session not found"
+        }), 404
+
+    if result == "LOCKED":
+        return jsonify({
+            "status": "error",
+            "message": "MFA session is locked"
+        }), 403
+
+    if result == "ALREADY_VERIFIED":
+        return jsonify({
+            "status": "error",
+            "message": "MFA has already been verified"
+        }), 409
+
+    if result == "SUPERSEDED":
+        return jsonify({
+            "status": "error",
+            "message": "This MFA code is no longer valid"
+        }), 401
+
+    if result == "EXPIRED":
+        return jsonify({
+            "status": "error",
+            "message": "MFA code has expired"
+        }), 410
+
+    if result == "INVALID":
+        return jsonify({
+            "status": "error",
+            "message": "Invalid MFA code"
+        }), 401
+
+    if result == "VALID":
+        return jsonify({
+            "status": "success",
+            "message": "MFA verification successful"
+        }), 200
 
 @app.route("/api/login", methods=["POST"])
 def api_login():
