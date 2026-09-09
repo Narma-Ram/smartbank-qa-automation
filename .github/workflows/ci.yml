@@ -26,9 +26,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Install Playwright browser
+      - name: Install Playwright browsers
         run: |
-          python -m playwright install --with-deps chromium
+          python -m playwright install --with-deps chromium firefox webkit
 
       - name: Start SmartBank application
         run: |
