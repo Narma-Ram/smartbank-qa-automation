@@ -5,7 +5,6 @@ from app.app import create_mfa_session
 import sqlite3
 import pytest
 from pytest_metadata.plugin import metadata_key
-
 from playwright.sync_api import sync_playwright
 
 
@@ -57,17 +56,33 @@ def pytest_runtest_makereport(item, call):
                 )
 
                 report.extras = extra
-            
-@pytest.fixture
-def page():
-    with sync_playwright() as p:
-        browser = p.chromium.launch(headless=True)
-        page = browser.new_page()
+def pytest_addoption(parser):
+    parser.addoption(
+        "--browser",
+        action="store",
+        default="chromium",
+        help="Browser to run tests: chromium, firefox, or webkit",
+    )
 
-        yield page
+@pytest.fixture(
+    scope="session",
+    params=["chromium", "firefox", "webkit"]
+)
+def browser(request):
+    with sync_playwright() as p:
+        browser_name = request.param
+        browser_type = getattr(p, browser_name)
+        browser = browser_type.launch(headless=True)
+
+        yield browser
 
         browser.close()
-        
+@pytest.fixture
+def page(browser):
+    context = browser.new_context()
+    page = context.new_page()
+    yield page
+    context.close()
 @pytest.fixture        
 def mfa_session():
     session_id, otp = create_mfa_session("smartbank_user")
@@ -76,7 +91,6 @@ def mfa_session():
         "session_id": session_id,
         "otp": otp
     }
-    
 @pytest.fixture
 def db_connection():
     connection = sqlite3.connect("smartbank.db")

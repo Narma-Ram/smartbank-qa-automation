@@ -68,6 +68,17 @@ MFA_PAGE = """
     <form method="POST" action="/resend-mfa">
         <button id="resend-mfa" type="submit">Resend OTP</button>
     </form>
+    <br><br>
+
+    <button id="test-alert" type="button" onclick="alert('This is a SmartBank test alert')">
+        Test Alert
+    </button>
+    <br><br>
+
+    <button id="test-confirm" type="button"
+        onclick="return confirm('Do you want to continue?')">
+        Test Confirm
+    </button>
     
     {% if error %}
         <p id="mfa-error">{{ error }}</p>

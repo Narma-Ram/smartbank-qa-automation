@@ -1,3 +1,5 @@
+from utils.ui_helpers import click_element, fill_input
+
 class LoginPage:
 
     def __init__(self, page):
@@ -12,6 +14,6 @@ class LoginPage:
         self.page.goto(url)
 
     def login(self, username, password):
-        self.username_input.fill(username)
-        self.password_input.fill(password)
-        self.login_button.click()
+        fill_input(self.username_input, username)
+        fill_input(self.password_input, password)
+        click_element(self.login_button)

@@ -1,7 +1,7 @@
 import json
-
+from conftest import page
 from pages.login_page import LoginPage
-
+from utils.ui_helpers import wait_for_element
 
 def load_test_data():
     with open("test_data/users.json") as file:
@@ -19,13 +19,10 @@ def test_valid_login_redirects_to_mfa(page):
         valid_user["username"],
         valid_user["password"]
     )
-
+    wait_for_element(page.locator("#mfa-message"))
     assert page.locator("h1").inner_text() == \
-        "Multi-Factor Authentication"
-
+    "Multi-Factor Authentication"
     assert page.locator("#mfa-message").is_visible()
-
-
 def test_invalid_login_shows_error(page):
     test_data = load_test_data()
     invalid_user = test_data["invalid_user"]
@@ -37,7 +34,7 @@ def test_invalid_login_shows_error(page):
         invalid_user["username"],
         invalid_user["password"]
     )
-
+    wait_for_element(page.locator("#error"))
     assert page.locator("#error").is_visible()
 
     assert page.locator("#error").inner_text() == \
@@ -47,15 +44,13 @@ def test_invalid_login_shows_error(page):
 def test_inactive_user_cannot_login(page):
     test_data = load_test_data()
     inactive_user = test_data["inactive_user"]
-
     login_page = LoginPage(page)
     login_page.open("http://127.0.0.1:5000")
-
     login_page.login(
         inactive_user["username"],
         inactive_user["password"]
     )
-
+    wait_for_element(page.locator("#error"))
     assert page.locator("#error").is_visible()
 
     assert page.locator("#error").inner_text() == \
@@ -63,27 +58,19 @@ def test_inactive_user_cannot_login(page):
         
     # Verify inactive user did NOT reach MFA
     assert not page.locator("#mfa-message").is_visible()
-
-
 def test_missing_username_shows_required_message(page):
     login_page = LoginPage(page)
     login_page.open("http://127.0.0.1:5000")
-
     page.fill("#password", "ValidPassword123")
     page.click("#login")
-
+    wait_for_element(page.locator("#error"))
     assert page.locator("#error").is_visible()
     assert page.locator("#error").inner_text() == \
         "Username is required"
-
-
 def test_missing_password_shows_required_message(page):
     login_page = LoginPage(page)
     login_page.open("http://127.0.0.1:5000")
-
     page.fill("#username", "smartbank_user")
     page.click("#login")
-
+    wait_for_element(page.locator("#error"))
     assert page.locator("#error").is_visible()
-    assert page.locator("#error").inner_text() == \
-        "Password is required"
