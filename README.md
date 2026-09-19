@@ -308,7 +308,8 @@ and database verification.
 
 **Regression result: 22 tests passed ✅**
 
-## 2. GitHub Actions
+## 🎉 Sprint 3 – Completed
+## GitHub Actions
 
 GitHub Actions is used to automatically execute the SmartBank automated test suite when changes are pushed to the `main` branch or when a pull request is created.
 
