@@ -415,4 +415,33 @@ The test suite covers:
 - Firefox
 - WebKit
 
+### Jenkins Job Configuration
+
+The Jenkins Freestyle project uses the following configuration:
+
+**Source Code Management**
+
+- SCM: Git
+- Repository: SmartBank QA Automation GitHub repository
+- Branch: `*/main`
+
+**Build Trigger**
+
+- Manual build trigger is currently used.
+- Automatic triggers can be added later if required.
+
+**Build Steps**
+
+The Jenkins build executes the following commands:
+
+```text
+python -m pip install -r requirements.txt
+
+python -c "from app.app import initialize_database; initialize_database()"
+
+python -m playwright install chromium firefox webkit
+
+Start SmartBank Flask application
+
+python -m pytest tests -v
 
