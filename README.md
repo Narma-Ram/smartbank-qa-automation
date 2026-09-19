@@ -308,5 +308,46 @@ and database verification.
 
 **Regression result: 22 tests passed ✅**
 
+## 2. GitHub Actions
+
+GitHub Actions is used to automatically execute the SmartBank automated test suite when changes are pushed to the `main` branch or when a pull request is created.
+
+### CI Workflow
+
+The GitHub Actions workflow performs the following steps:
+
+1. Checks out the repository.
+2. Sets up Python 3.12.
+3. Installs the project dependencies from `requirements.txt`.
+4. Installs the Chromium, Firefox, and WebKit Playwright browsers.
+5. Starts the SmartBank Flask application.
+6. Executes the pytest test suite.
+7. Generates a self-contained HTML test report.
+8. Uploads the HTML report as a GitHub Actions artifact.
+9. Uploads failure screenshots when the test job fails.
+
+### Browser Coverage
+
+The Playwright test framework supports:
+
+- Chromium
+- Firefox
+- WebKit
+
+The current GitHub Actions workflow executes the complete test suite sequentially. Parallel execution with `pytest-xdist` is currently used for local testing rather than CI.
+
+### GitHub Actions Result
+
+The CI pipeline successfully executes the complete automated test suite.
+
+The current regression suite contains:
+
+- UI tests
+- API tests
+- Database tests
+
+The latest successful CI execution completed with:
+
+**40 tests passed.**
 
 
