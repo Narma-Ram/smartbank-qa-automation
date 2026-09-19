@@ -436,6 +436,12 @@ The Jenkins build executes the following commands:
 
 ```text
 python -m pip install -r requirements.txt
+### Test Execution and Reporting
+
+Jenkins executes the complete pytest test suite using:
+
+```text
+python -m pytest tests -v
 
 python -c "from app.app import initialize_database; initialize_database()"
 
