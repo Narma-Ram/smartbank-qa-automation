@@ -338,3 +338,14 @@ and database verification.
 `d3178e5` — `Add CI/CD documentation`
 
 **Status: COMPLETE**
+---
+
+## Financial BI & Reporting Dashboard
+
+A sprint-based portfolio project demonstrating financial KPI validation, SQL data analysis, dashboard testing, and end-to-end QA automation using synthetic banking data.
+
+**Project focus:** Python · SQL · Pandas · Playwright · pytest · API Testing · GitHub Actions · Docker
+
+📊 **[View BI Sprint Tracker](docs/bi-reporting/BI-SPRINT-TRACKER.md)**
+
+The tracker documents project objectives, sprint progress, planned deliverables, and quality engineering practices.
